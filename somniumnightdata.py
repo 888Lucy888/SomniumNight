@@ -15,16 +15,34 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import timedelta
 
-# Create a DataFrame from the data
 data = {
-    'Dispositivo': ['Withings Sleep', 'Apple Watch', 'Withings Sleep', 'Xiaomi Band', 'Apple Watch', 'Fitbit'],
-    'Nombre (Siglas)': ['C.L.C.A.', 'I.V.C.S.', 'X.M.', 'M.A.V.', 'S.G.N.', 'E.C.'],
-    'Horas de Sueño': ['8:23', '4:45', '7:04', '8:02', '6:51', '5:39'],
-    'REM %': ['25,00%', '19.3', '29%', '21,00%', '24,00%', '7,00%'],
-    'Deep Sleep %': ['38,00%', '31.6', '26%', '28,00%', '24,00%', '9,00%'],
-    'Horas de S. WN': ['7:17', '8:11', '6:44', '5:54', '9:04', '7:02'],
-    'REM % WN': ['32,00%', '31.36', '33%', '15,00%', '17,00%', '18,00%'],
-    'Deep Sleep % WN': ['17,00%', '12.83', '20%', '19,00%', '13,00%', '17,00%']
+    'Dispositivo': ['Withings Sleep', 'Apple Watch', 'Withings Sleep', 'Xiaomi Band', 'Apple Watch', 'Fitbit',
+                    'Apple Watch', 'Withings Sleep', 'Apple Watch', 'Fitbit', 'Withings Sleep', 'Apple Watch',
+                    'Fitbit', 'Apple Watch', 'Apple Watch', 'Withings Sleep', 'Xiaomi Band', 'Withings Sleep',
+                    'Withings Sleep', 'Withings Sleep', 'Apple Watch', 'Withings Sleep', 'Apple Watch',
+                    'Apple Watch', 'Apple Watch', 'Apple Watch', 'Fitbit', 'Withings Sleep', 'Xiaomi Band', 'Xiaomi Band'],
+    'Nombre (Siglas)': ['C.L.C.A.', 'I.V.C.S.', 'X.M.', 'M.A.V.', 'S.G.N.', 'E.C.', 'T.G.R.V', 'D.R.', 'P.T.C',
+                         'P.X.C.B', 'A.G.C.T', 'O.D.G', 'S', 'E.V.', 'I.B.', 'L', 'A.I.', 'C.V.', 'R.M.', 'S.V.',
+                         'F.S.', 'A.L.M.', 'P.T.', 'A.N.', 'M.J.C.', 'F.R.', 'I.G.N', 'A.J.C.A.', 'L.H.V.', 'J.M.O'],
+    'Horas de Sueño': ['8:23', '4:45', '7:04', '8:02', '6:51', '5:39', '8:32', '6:31', '7:34', '9:15', '7:23', '6:32',
+                       '8:01', '7:51', '8:15', '6:52', '7:43', '7:24', '6:38', '7:43', '7:24', '6:23', '8:23', '7:12',
+                       '7:43', '7:45', '6:53', '7:23', '4:13', '5:57'],
+    'REM %': ['25,00%', '19,00%', '29,00%', '21,00%', '24,00%', '7,00%', '24,00%', '15,00%', '21,00%', '20,00%',
+              '20,00%', '12,00%', '23,00%', '23,00%', '20,00%', '17,00%', '15,00%', '25,00%', '18,00%', '27,00%',
+              '28,00%', '24,00%', '26,00%', '21,00%', '24,00%', '18,00%', '23,00%', '19,00%', '20,00%', '12,00%'],
+    'Deep Sleep %': ['38,00%', '32,00%', '26,00%', '28,00%', '24,00%', '9,00%', '21,00%', '17,00%', '10,00%', '18,00%',
+                     '23,00%', '16,00%', '20,00%', '19,00%', '20,00%', '16,00%', '13,00%', '20,00%', '16,00%', '24,00%',
+                     '23,00%', '16,00%', '23,00%', '17,00%', '18,00%', '20,00%', '25,00%', '21,00%', '23,00%', '27,00%'],
+    'Horas de S. WN': ['7:17', '8:11', '6:44', '5:54', '9:04', '7:02', '8:12', '6:01', '8:12', '8:32', '5:34', '6:07',
+                       '7:43', '8:02', '8:32', '7:12', '7:55', '7:40', '7:18', '7:10', '7:35', '7:22', '8:35', '7:33',
+                       '7:17', '6:23', '7:26', '8:16', '5:38', '8:32'],
+    'REM % WN': ['32,00%', '32,00%', '33,00%', '15,00%', '17,00%', '18,00%', '29,00%', '16,00%', '28,00%', '25,00%',
+                 '15,00%', '18,00%', '23,00%', '22,00%', '22,00%', '16,00%', '15,00%', '29,00%', '19,00%', '31,00%',
+                 '26,00%', '26,00%', '24,00%', '24,00%', '23,00%', '21,00%', '22,00%', '27,00%', '25,00%', '15,00%'],
+    'Deep Sleep % WN': ['17,00%', '13,00%', '20,00%', '19,00%', '13,00%', '17,00%', '21,00%', '21,00%', '15,00%',
+                        '22,00%', '17,00%', '21,00%', '23,00%', '23,00%', '24,00%', '19,00%', '17,00%', '23,00%',
+                        '22,00%', '18,00%', '26,00%', '21,00%', '29,00%', '18,00%', '13,00%', '15,00%', '20,00%',
+                        '22,00%', '24,00%', '24,00%']
 }
 
 df = pd.DataFrame(data)
@@ -49,8 +67,6 @@ median_sueño = df['Horas de Sueño'].median()
 mean_wn = df['Horas de S. WN'].mean()
 median_wn = df['Horas de S. WN'].median()
 
-# %% 
-
 mode_no_wn_rem = df['REM %'].mode().iloc[0]
 mode_wn_rem = df['REM % WN'].mode().iloc[0]
 
@@ -69,13 +85,20 @@ mean_wn_deep_sleep = df['Deep Sleep % WN'].mean()
 median_no_wn_deep_sleep = df['Deep Sleep %'].median()
 median_wn_deep_sleep = df['Deep Sleep % WN'].median()
 
-
 # Convert mean and median values to HH:MM:SS format
 mean_sueño_str = str(mean_sueño).split(' ')[-1]
 median_sueño_str = str(median_sueño).split(' ')[-1]
 
 mean_wn_str = str(mean_wn).split(' ')[-1]
 median_wn_str = str(median_wn).split(' ')[-1]
+
+# Calculate total error
+error_sueño = (df['Horas de Sueño'] - mean_sueño).sum()
+error_wn = (df['Horas de S. WN'] - mean_wn).sum()
+error_rem = (df['REM %'] - mean_no_wn_rem).sum()
+error_rem_wn = (df['REM % WN'] - mean_wn_rem).sum()
+error_deep_sleep = (df['Deep Sleep %'] - mean_no_wn_deep_sleep).sum()
+error_deep_sleep_wn = (df['Deep Sleep % WN'] - mean_wn_deep_sleep).sum()
 
 # Print the results
 print("Sin Ruido Blanco:")
@@ -88,6 +111,9 @@ print("REM % - Mediana:", median_no_wn_rem)
 print("Deep Sleep % - Moda:", mode_no_wn_deep_sleep)
 print("Deep Sleep % - Media:", round(mean_no_wn_deep_sleep, 2))
 print("Deep Sleep % - Mediana:", median_no_wn_deep_sleep)
+print("Total Error for Horas de Sueño:", error_sueño)
+print("Total Error for REM %:", error_rem)
+print("Total Error for Deep Sleep %:", error_deep_sleep)
 
 print("\nCon Ruido Blanco:")
 print("Horas de Sueño - Moda:", mode_wn_sueño)
@@ -99,6 +125,9 @@ print("REM % - Mediana:", median_wn_rem)
 print("Deep Sleep % - Moda:", mode_wn_deep_sleep)
 print("Deep Sleep % - Media:", round(mean_wn_deep_sleep, 2))
 print("Deep Sleep % - Mediana:", median_wn_deep_sleep)
+print("Error Total para Horas de S. WN:", error_wn)
+print("Error Total para REM % WN:", error_rem_wn)
+print("Error Total para Deep Sleep % WN:", error_deep_sleep_wn)
 
 """### Graficacion de Datos
 
