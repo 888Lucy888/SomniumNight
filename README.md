@@ -9,3 +9,9 @@
 - % REM 
 - % Deep Sleep
 - With or without White Noise
+
+
+### Team:
+- Ximena Muñoz
+- David Rivera
+- Lucia Castañeda
